@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { Form } from './components/Form';
+import { FormTest } from './components/Form';
 
 export const App: FC = () => {
-  return <Form />;
+  return <FormTest />;
 };
