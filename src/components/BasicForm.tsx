@@ -1,11 +1,7 @@
+import { FC } from 'react';
 import { object, string, number, date, InferType } from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-
-interface MyFormValues {
-  name: string;
-  email: string;
-  age: number;
-}
+import { IBasicForm, IFormikProps } from '../interfaces';
 
 const formSchema = object().shape({
   name: string().required('Name is required'),
@@ -16,18 +12,22 @@ const formSchema = object().shape({
 
 type Form = InferType<typeof formSchema>;
 
-export const FormTest = () => {
-  const initialValues: MyFormValues = { name: '', email: '', age: 0 };
+export const BasicForm: FC = () => {
+  const initialValues: IBasicForm = {
+    name: '',
+    email: '',
+    age: 0,
+  };
 
-  const handleSubmit = (values: MyFormValues) => {
+  const handleSubmit = (values: IBasicForm) => {
     setTimeout(() => {
       console.log(values);
-    }, 600);
+    }, 300);
   };
 
   return (
     <div>
-      <h1>Formik + Yup</h1>
+      <h1>Basic formik</h1>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}

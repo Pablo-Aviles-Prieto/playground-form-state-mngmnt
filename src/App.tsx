@@ -1,6 +1,12 @@
 import { FC } from 'react';
-import { FormTest } from './components/Form';
+import { BasicForm, PropsForm } from './components';
 
 export const App: FC = () => {
-  return <FormTest />;
+  return (
+    <>
+      <BasicForm />
+      <hr style={{ margin: '30px 0' }} />
+      <PropsForm />
+    </>
+  );
 };
