@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { object, string, number, date, InferType } from 'yup';
-import { Formik, Form, Field, FormikProps } from 'formik';
+import { Formik, Form, Field, FormikHelpers } from 'formik';
 import { IFormikProps, IPropsForm } from '../interfaces';
 
 const MyInput = ({ field, form, ...props }: IFormikProps) => {
@@ -15,19 +15,22 @@ export const PropsForm: FC = () => {
     lastName: '',
   };
 
-  const handleSubmit = (values: IPropsForm) => {
+  const handleSubmit = (
+    values: IPropsForm,
+    { resetForm }: FormikHelpers<IPropsForm>
+  ) => {
     setTimeout(() => {
       console.log(values);
     }, 300);
+    resetForm();
   };
 
   const formSchema = object().shape({
-    // color: string().required('Color is required'),
     email: string()
       .email('Invalid email address')
-      .required('Email is required1'),
-    firstName: string().required('first name is required'),
-    lastName: string().required('last name is required'),
+      .required('Email is required'),
+    firstName: string().required('The first name is required'),
+    lastName: string().required('The last name is required'),
   });
 
   return (
@@ -38,38 +41,51 @@ export const PropsForm: FC = () => {
         onSubmit={handleSubmit}
         validationSchema={formSchema}
       >
-        {(props: FormikProps<any>) => (
+        {({ isSubmitting, isValid, touched, errors }) => (
           <Form>
             <Field type='email' name='email' placeholder='Email' />
-            <Field as='select' name='color'>
-              <option value='red'>Red</option>
-              <option value='green'>Green</option>
-              <option value='blue'>Blue</option>
-            </Field>
+            {touched.email && errors.email && (
+              <p style={{ color: 'red' }}>{errors.email}</p>
+            )}
+            <div style={{ margin: '20px 0' }}>
+              <Field as='select' name='color'>
+                <option value='red'>Red</option>
+                <option value='green'>Green</option>
+                <option value='blue'>Blue</option>
+              </Field>
+            </div>
 
-            <Field name='lastName'>
+            <Field name='firstName'>
               {({
                 field, // { name, value, onChange, onBlur }
                 form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
                 meta,
               }: IFormikProps) => (
-                <div>
+                <div style={{ margin: '20px 0' }}>
                   <>
-                    <input type='text' placeholder='Last name' {...field} />
+                    <input type='text' placeholder='First name' {...field} />
                     {meta.touched && meta.error && (
-                      <div className='error'>{meta.error}</div>
+                      <p style={{ color: 'red' }}>{meta.error}</p>
                     )}
-                    {console.log('props', props)}
-                    {console.log('field', field)}
-                    {console.log('touched', touched)}
-                    {console.log('errors', errors)}
-                    {console.log('meta', meta)}
                   </>
                 </div>
               )}
             </Field>
-            <Field name='lastName' placeholder='Doe' component={MyInput} />
-            <button type='submit'>Submit</button>
+            <Field
+              name='lastName'
+              placeholder='Last name'
+              component={MyInput}
+            />
+            {touched.lastName && errors.lastName && (
+              <p style={{ color: 'red' }}>{errors.lastName}</p>
+            )}
+            <button
+              style={{ display: 'block', margin: '10px 0' }}
+              type='submit'
+              disabled={isSubmitting}
+            >
+              Submit
+            </button>
           </Form>
         )}
       </Formik>
