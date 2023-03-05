@@ -16,7 +16,7 @@ async function fetcher<T>(url: string): Promise<T> {
   return data as T;
 }
 
-export function useData<T>(url: string): FetcherResponse<T> {
+export function useFetch<T>(url: string): FetcherResponse<T> {
   const { data, error, isLoading, isValidating } = useSWR<T>(url, fetcher);
   return { data, error, isLoading, isValidating };
 }
