@@ -34,7 +34,9 @@ export const UnsplashImgs: FC = () => {
 
   return (
     <>
-      <h1>Unsplash fire imgs from zustand store and SWR preloading them</h1>
+      <h1 className='text-3xl font-bold underline'>
+        Unsplash fire imgs from zustand store and SWR preloading them
+      </h1>
       <div className='imgs-container'>
         {images.map((img) => (
           <img
