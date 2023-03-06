@@ -35,15 +35,26 @@ export const PreloadPokemons: FC = () => {
   };
 
   return (
-    <div>
-      <h1>Preload Pokemons</h1>
+    <div className='mx-20'>
+      <h1 className='my-4 text-4xl font-bold text-center underline'>
+        Preload Pokemons
+      </h1>
       <ul>
         {allPokemon.map((pokemon) => (
-          <li key={pokemon.name}>{pokemon.name}</li>
+          <li className='text-lg' key={pokemon.name}>
+            {pokemon.name}
+          </li>
         ))}
       </ul>
-      {isLoadingPokemon && <h1>Loading...</h1>}
-      <button onClick={handleClick}>Load more pokemons</button>
+      {isLoadingPokemon && (
+        <h1 className='my-4 text-2xl font-bold'>Loading...</h1>
+      )}
+      <button
+        className='px-6 py-3 my-5 transition-all duration-500 border rounded-md shadow-lg text-violet-900 bg-violet-300 border-violet-900 hover:bg-violet-600 hover:scale-105 hover:text-violet-200 hover:shadow-2xl'
+        onClick={handleClick}
+      >
+        Load more pokemons
+      </button>
     </div>
   );
 };

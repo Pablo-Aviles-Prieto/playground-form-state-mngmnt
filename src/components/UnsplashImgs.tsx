@@ -83,7 +83,7 @@ export const UnsplashImgs: FC = () => {
 
   return (
     <>
-      <h1 className='my-4 text-3xl font-bold text-center underline'>
+      <h1 className='my-6 text-4xl font-bold text-center underline'>
         Unsplash fire imgs from zustand store and SWR preloading them
       </h1>
       <div className='grid grid-cols-1 gap-3 mx-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6'>
