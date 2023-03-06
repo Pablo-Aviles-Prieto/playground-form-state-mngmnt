@@ -11,24 +11,33 @@ interface UseFetchOptions<T> {
   onSuccess?: (data: T) => void;
 }
 
-export async function fetcher<T>(url: string): Promise<T> {
-  const response = await fetch(url);
+export async function unsplashFetcher<T>(url: string): Promise<T> {
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      Authorization: 'Client-ID SOPOVCNGvYl3DOy-4n5LJHUb94oax27VdhZ4g3v1gh0',
+    },
+  });
   if (!response.ok) {
-    throw new Error('Failed to fetch data');
+    throw new Error('Failed to fetch images');
   }
   const data = await response.json();
   return data as T;
 }
 
-export function useFetch<T>(
+export function useFetchUnsplash<T>(
   url: string,
   options: UseFetchOptions<T> = {}
 ): FetcherResponse<T> {
-  const { data, error, isLoading, isValidating } = useSWR<T>(url, fetcher, {
-    ...options,
-    refreshInterval: 0, // Stop retrying when the API call returns an error, but it wont if its a logic error.
-    errorRetryCount: 0, // In case of error it wont retry even if its a failure produced by the own logic,
-    revalidateOnFocus: false, // Avoids to recall the API whenever we switch to another tab or programm and come back to the page.
-  });
+  const { data, error, isLoading, isValidating } = useSWR<T>(
+    url,
+    unsplashFetcher,
+    {
+      ...options,
+      refreshInterval: 0, // Stop retrying when the API call returns an error, but it wont if its a logic error.
+      errorRetryCount: 0, // In case of error it wont retry even if its a failure produced by the own logic,
+      revalidateOnFocus: false, // Avoids to recall the API whenever we switch to another tab or programm and come back to the page.
+    }
+  );
   return { data, error, isLoading, isValidating };
 }

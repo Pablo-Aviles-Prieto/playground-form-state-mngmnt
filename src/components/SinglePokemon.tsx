@@ -8,7 +8,7 @@ export const SinglePokemon: FC = () => {
     error: errorPokemon,
     isLoading: isLoadingPokemon,
   } = useFetch<ISinglePokemon>('https://pokeapi.co/api/v2/pokemon/1/');
-  console.log('errorPokemon', errorPokemon?.message);
+
   return (
     <>
       <h1>Single pokemon</h1>

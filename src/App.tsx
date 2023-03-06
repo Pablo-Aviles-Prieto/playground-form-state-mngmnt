@@ -5,11 +5,14 @@ import {
   SinglePokemon,
   PokemonList,
   PreloadPokemons,
+  UnsplashImgs,
 } from './components';
 
 export const App: FC = () => {
   return (
     <>
+      <UnsplashImgs />
+      <hr style={{ margin: '30px 0' }} />
       <PreloadPokemons />
       <hr style={{ margin: '30px 0' }} />
       <BasicForm />

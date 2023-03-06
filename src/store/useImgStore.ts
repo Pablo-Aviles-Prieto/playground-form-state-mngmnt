@@ -6,7 +6,7 @@ interface IImgStore {
   addImages: (newImgs: IUnsplashImgObj[]) => void;
 }
 
-const useImgStore = create<IImgStore>()((set) => ({
+export const useImgStore = create<IImgStore>()((set) => ({
   images: [],
   addImages: (newImgs) =>
     set((state) => ({ images: [...state.images, ...newImgs] })),
