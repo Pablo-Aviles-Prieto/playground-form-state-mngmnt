@@ -27,39 +27,63 @@ export const BasicForm: FC = () => {
 
   return (
     <div>
-      <h1>Basic formik</h1>
+      <h1 className='my-4 text-4xl font-bold text-center underline'>
+        Basic formik
+      </h1>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={formSchema}
       >
         {({ isSubmitting }) => (
-          <Form>
-            <div style={{ height: '60px' }}>
-              <label htmlFor='name'>Name:</label>
-              <Field name='name' type='text' />
-              <p style={{ color: 'red' }}>
+          <Form className='px-20'>
+            <div className='h-24'>
+              <label htmlFor='name' className='text-violet-800'>
+                Name:
+              </label>
+              <Field
+                name='name'
+                type='text'
+                className='block w-auto px-4 py-3 text-sm border rounded-lg outline-none border-violet-600'
+              />
+              <p className='text-red-600'>
                 <ErrorMessage name='name' />
               </p>
             </div>
 
-            <div style={{ height: '60px' }}>
-              <label htmlFor='email'>Email:</label>
-              <Field name='email' type='email' />
-              <p style={{ color: 'red' }}>
+            <div className='h-24'>
+              <label htmlFor='email' className='text-violet-800'>
+                Email:
+              </label>
+              <Field
+                className='block w-auto px-4 py-3 text-sm border rounded-lg outline-none border-violet-600'
+                name='email'
+                type='email'
+              />
+              <p className='text-red-600'>
                 <ErrorMessage name='email' />
               </p>
             </div>
 
-            <div style={{ height: '60px' }}>
-              <label htmlFor='age'>Age:</label>
-              <Field name='age' type='number' />
-              <p style={{ color: 'red' }}>
+            <div className='h-24'>
+              <label htmlFor='age' className='text-violet-800'>
+                Age:
+              </label>
+              <Field
+                className='block w-auto px-4 py-3 text-sm border rounded-lg outline-none border-violet-600'
+                name='age'
+                type='number'
+              />
+              <p className='text-red-600'>
                 <ErrorMessage name='age' />
               </p>
             </div>
 
-            <button type='submit' disabled={isSubmitting}>
+            <button
+              className='px-6 py-3 transition-all duration-500 border rounded-md shadow-lg text-violet-900 bg-violet-300 border-violet-900 hover:bg-violet-600 hover:scale-105 hover:text-violet-200 hover:shadow-2xl'
+              type='submit'
+              disabled={isSubmitting}
+            >
               Submit
             </button>
           </Form>
