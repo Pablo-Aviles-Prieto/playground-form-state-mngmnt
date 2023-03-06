@@ -12,9 +12,11 @@ export const PokemonList: FC = () => {
   return (
     <>
       <h1>Pokemon List</h1>
-      {data?.results.map((pokeObj) => (
-        <p key={pokeObj.name}>{pokeObj.name}</p>
-      ))}
+      {isLoading ? (
+        <h1>Loading...</h1>
+      ) : (
+        data?.results.map((pokeObj) => <p key={pokeObj.name}>{pokeObj.name}</p>)
+      )}
     </>
   );
 };
