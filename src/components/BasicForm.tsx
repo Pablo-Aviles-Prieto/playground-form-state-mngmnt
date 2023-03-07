@@ -5,7 +5,7 @@ import { IBasicForm, IFormikProps } from '../interfaces';
 
 const formSchema = object().shape({
   name: string().required('Name is required'),
-  email: string().email('Invalid email address').required('Email is required1'),
+  email: string().email('Invalid email address').required('Email is required!!'),
   age: number().positive().integer().required('Age is required'),
   createdOn: date().default(() => new Date()),
 });
